@@ -1,0 +1,45 @@
+
+{
+	"name": "vivre-tech/rest-grid",
+	"description": "For Yii2: ",
+	"keywords": ["yii2", "grid", "rest-grid", "rest", "api"],
+	"type": "yii2-extension",
+	"license": "MIT",
+	"support": {
+		"issues": "https://github.com/VivreTech/rest-grid/issues",
+		"forum": "http://www.yiiframework.com/forum/",
+		"wiki": "https://github.com/VivreTech/rest-grid/wiki",
+		"source": "https://github.com/VivreTech/rest-grid"
+	},
+	"authors": [
+		{
+			"name": "Banciu N. Cristian Mihai",
+			"email": "banciu.n.cristian.mihai@gmail.com"
+		}
+	],
+	"require": {
+        "php": ">=5.4",
+		"yiisoft/yii2": "~2.0.13",
+        "vivre-tech/rest-renderer": "*"
+
+	},
+    "require-dev": {
+        "phpunit/phpunit": "6.5.*"
+    },
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://asset-packagist.org"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+            "vivretech\\rest\\grid\\": "src/"
+        }
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		}
+	}
+}
