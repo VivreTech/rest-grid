@@ -209,76 +209,36 @@ Response
         }
     ],
     "items": [
-        [
-            {
-                "id": 1
-            },
-            {
-                "name": "Product 1"
-            },
-            {
-                "price": 101
-            },
-            {
-                "created_at": "2017-12-14 11:13:57"
-            }
-        ],
-        [
-            {
-                "id": 2
-            },
-            {
-                "name": "Product 2"
-            },
-            {
-                "price": 102
-            },
-            {
-                "created_at": "2017-12-14 11:13:57"
-            }
-        ],
-        [
-            {
-                "id": 3
-            },
-            {
-                "name": "Product 3"
-            },
-            {
-                "price": 103
-            },
-            {
-                "created_at": "2017-12-14 11:13:57"
-            }
-        ],
-        [
-            {
-                "id": 4
-            },
-            {
-                "name": "Product 4"
-            },
-            {
-                "price": 104
-            },
-            {
-                "created_at": "2017-12-14 11:13:57"
-            }
-        ],
-        [
-            {
-                "id": 5
-            },
-            {
-                "name": "Product 5"
-            },
-            {
-                "price": 105
-            },
-            {
-                "created_at": "2017-12-14 11:13:57"
-            }
-        ]
+        {
+            "id": 1,
+            "name": "Product 1",
+            "price": 101,
+            "created_at": "2017-12-14 11:13:57"
+        },
+        {
+            "id": 2,
+            "name": "Product 2",
+            "price": 102,
+            "created_at": "2017-12-14 11:13:57"
+        },
+        {
+            "id": 3,
+            "name": "Product 3",
+            "price": 103,
+            "created_at": "2017-12-14 11:13:57"
+        },
+        {
+            "id": 4,
+            "name": "Product 4",
+            "price": 104,
+            "created_at": "2017-12-14 11:13:57"
+        },
+        {
+            "id": 5,
+            "name": "Product 5",
+            "price": 105,
+            "created_at": "2017-12-14 11:13:57"
+        }
     ]
 }
 ```

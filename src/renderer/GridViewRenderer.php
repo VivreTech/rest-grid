@@ -213,7 +213,14 @@ class GridViewRenderer extends DataRenderer
             /* @var $column DataColumn */
             foreach ($this->grid->columns as $column)
             {
-                $cells[] = $column->renderDataCell($model, $key, $index);
+                $dataCellContent = $column->renderDataCell($model, $key, $index);
+
+                if (is_callable($this->grid->rowDataCellRender))
+                {
+                    $dataCellContent = call_user_func($this->grid->rowDataCellRender, $this->grid, $dataCellContent);
+                }
+
+                $cells = array_merge($cells, $dataCellContent);
             }
 
             $rows[] = $cells;

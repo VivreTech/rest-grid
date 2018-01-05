@@ -170,6 +170,21 @@ class Grid extends BaseObject
     public $defaultLayout = ['metadata', 'pager', 'columns', 'items'];
 
     /**
+     * @var callable a PHP callable that will be called to return the new row cell content
+     * The signature of the callable should be:
+     *
+     * ```php
+     * function ($grid, $cellContent) {
+     *     // $grid is the Grid object currently running
+     *     // $cellContent is the main row cell data that the grid is currently rendered.
+     * }
+     * ```
+     *
+     * The callable should return an array with the new cell data content.
+     */
+    public $rowDataCellRender;
+
+    /**
      * @var array the currently requested layout order as computed by [[getLayoutSections]].
      */
     private $_layout = null;

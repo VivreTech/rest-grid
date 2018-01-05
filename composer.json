@@ -1,7 +1,7 @@
 
 {
 	"name": "vivre-tech/rest-grid",
-	"description": "For Yii2: ",
+	"description": "For Yii2: This extension provides the ability like GridView but for REST.",
 	"keywords": ["yii2", "grid", "rest-grid", "rest", "api"],
 	"type": "yii2-extension",
 	"license": "MIT",
