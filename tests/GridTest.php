@@ -130,21 +130,10 @@ final class GridTest extends TestCase
         /* Test First Item. */
         $item = reset($result['items']);
         $itemExpectations = [
-            [
-                'id' => 1,
-            ],
-
-            [
-                'name' => 'Product 1'
-            ],
-
-            [
-                'price' => 101
-            ],
-
-            [
-                'created_at' => '2017-12-12 00:00:00'
-            ]
+            'id' => 1,
+            'name' => 'Product 1',
+            'price' => 101,
+            'created_at' => '2017-12-12 00:00:00'
         ];
         $this->assertEquals($item, $itemExpectations);
     }
