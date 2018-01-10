@@ -88,8 +88,8 @@ class GridViewRenderer extends DataRenderer
     public function renderPager()
     {
         $pagination 		= $this->grid->dataProvider->getPagination();
-        $totalResults 		= 0;
-        $resultsPerPage 	= 0;
+        $totalResults 		= $this->grid->dataProvider->getTotalCount();
+        $resultsPerPage 	= $this->grid->dataProvider->getCount();
         $totalPages 		= 1;
         $currentPage 		= 1;
 
@@ -100,10 +100,6 @@ class GridViewRenderer extends DataRenderer
             $totalPages 	= $pagination->getPageCount();
             $currentPage 	= $pagination->getPage() + 1;
 
-        } else
-        {
-            $totalResults 		= $this->grid->dataProvider->getTotalCount();
-            $resultsPerPage 	= $this->grid->dataProvider->getCount();
         }
 
         return [
