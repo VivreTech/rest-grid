@@ -1,8 +1,6 @@
 <?php
 
-
 namespace vivretech\rest\grid\renderer;
-
 
 use yii\data\Sort;
 use yii\data\Pagination;
@@ -10,7 +8,6 @@ use yii\helpers\ArrayHelper;
 use vivretech\rest\grid\Grid;
 use vivretech\rest\grid\DataColumn;
 use vivretech\rest\renderer\DataRenderer;
-
 
 class GridViewRenderer extends DataRenderer
 {
@@ -25,14 +22,12 @@ class GridViewRenderer extends DataRenderer
      * @param array $params
      * @return array
      */
-    public function renderMain($params = [])
-    {
-        if (empty($params['grid']) || ($params['grid'] instanceof Grid) === false)
-        {
+    public function renderMain($params = []) {
+        if (empty($params['grid']) || ($params['grid'] instanceof Grid) === false) {
             throw new \InvalidArgumentException(
                 'This render action ' .
                 $this->getUniqueId() . '::' . __FUNCTION__ . ' is requiring to provide a grid param of type ' .
-                Grid::className()
+                Grid::class
             );
         }
 
@@ -40,12 +35,10 @@ class GridViewRenderer extends DataRenderer
 
         $content = [];
 
-        foreach ($this->grid->getLayoutSections() as $section)
-        {
+        foreach ($this->grid->getLayoutSections() as $section) {
             $sectionData = $this->renderSection($section);
 
-            if ($sectionData !== false)
-            {
+            if ($sectionData !== false) {
                 $content = ArrayHelper::merge($content, $sectionData);
             }
         }
@@ -62,8 +55,7 @@ class GridViewRenderer extends DataRenderer
      */
     public function renderSection($name)
     {
-        switch ($name)
-        {
+        switch ($name) {
             case 'metadata':
                 return $this->renderMetaData();
 
@@ -93,8 +85,7 @@ class GridViewRenderer extends DataRenderer
         $totalPages 		= 1;
         $currentPage 		= 1;
 
-        if (isset($pagination) && is_object($pagination))
-        {
+        if (isset($pagination) && is_object($pagination)) {
             $totalResults   = $pagination->totalCount;
             $resultsPerPage = $pagination->getPageSize();
             $totalPages 	= $pagination->getPageCount();
@@ -147,16 +138,14 @@ class GridViewRenderer extends DataRenderer
         $sort = $this->grid->dataProvider->getSort();
 
 
-        if (isset($pagination) && ($pagination instanceof Pagination) == true)
-        {
+        if (isset($pagination) && ($pagination instanceof Pagination) == true) {
             $value['request_params']['pager'] = [
                 'param' => $pagination->pageParam,
                 'size' => $pagination->pageSizeParam,
             ];
         }
 
-        if (isset($sort) && ($sort instanceof Sort) == true)
-        {
+        if (isset($sort) && ($sort instanceof Sort) == true) {
             $value['request_params']['sorter'] = [
                 'param' => $sort->sortParam,
                 'separator' => $sort->separator,
@@ -175,22 +164,21 @@ class GridViewRenderer extends DataRenderer
     {
         $cols = [];
 
-        foreach ($this->grid->columns as $column)
-        {
+        foreach ($this->grid->columns as $column) {
             $cols[] = [
                 'label'         => $column->renderLabel(),
                 'attribute'     => $column->attribute,
                 'description'   => $column->renderDescription(),
+
+                'options'       => $column->options,
 
                 'sortable'      => $column->enableSorting,
                 'filterable'    => $column->enableFiltering,
 
                 'header'        => $column->renderHeaderCell(),
                 'filter'        => $column->renderFilterCell(),
-                'row' => [
-                    'options' => $column->rowOptions,
-                ],
-                'footer' => $column->renderFooterCell(),
+
+                'footer'        => $column->renderFooterCell(),
             ];
         }
 
@@ -208,18 +196,15 @@ class GridViewRenderer extends DataRenderer
         $keys = $this->grid->dataProvider->getKeys();
         $rows = [];
 
-        foreach ($models as $index => $model)
-        {
+        foreach ($models as $index => $model) {
             $key = $keys[$index];
             $cells = [];
 
             /* @var $column DataColumn */
-            foreach ($this->grid->columns as $column)
-            {
+            foreach ($this->grid->columns as $column) {
                 $dataCellContent = $column->renderDataCell($model, $key, $index);
 
-                if (is_callable($this->grid->rowDataCellRender))
-                {
+                if (is_callable($this->grid->rowDataCellRender)) {
                     $dataCellContent = call_user_func($this->grid->rowDataCellRender, $this->grid, $dataCellContent);
                 }
 

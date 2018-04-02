@@ -1,8 +1,6 @@
 <?php
 
-
 namespace vivretech\rest\grid;
-
 
 use Yii;
 use vivretech\rest\grid\renderer\GridViewRenderer;
@@ -13,10 +11,8 @@ use yii\i18n\Formatter;
 use yii\web\Request;
 use vivretech\rest\renderer\DataRenderer;
 
-
 class Grid extends BaseObject
 {
-
 
     /* @var string Grid Id. */
     protected $_id;
@@ -84,7 +80,7 @@ class Grid extends BaseObject
      * ```php
      * [
      *     [
-     *         'class' => DataColumn::className(), // this line is optional
+     *         'class' => DataColumn::class, // this line is optional
      *         'attribute' => 'name',
      *         'label' => 'Name'
      *     ],
@@ -196,9 +192,8 @@ class Grid extends BaseObject
      */
     public function getId()
     {
-        if (empty($this->_id) )
-        {
-            $this->_id = md5(self::className()) . '_'. static::$counter++;
+        if (empty($this->_id)) {
+            $this->_id = md5(self::class) . '_'. static::$counter++;
         }
 
         return $this->_id;
@@ -215,12 +210,10 @@ class Grid extends BaseObject
         parent::init();
 
         /* Init DataProvider if there is nothing set. */
-        if (empty($this->dataProvider))
-        {
-            if ($this->query !== null)
-            {
+        if (empty($this->dataProvider)) {
+            if ($this->query !== null) {
                 $this->dataProvider = Yii::createObject([
-                    'class' => ActiveDataFilter::className(),
+                    'class' => ActiveDataFilter::class,
                     'query' => $this->query,
                     'pagination' => [
                         'pageSize' => $this->batchSize
@@ -230,16 +223,14 @@ class Grid extends BaseObject
         }
 
         /* Init DataRenderer if there is nothing set. */
-        if (empty($this->dataRenderer))
-        {
+        if (empty($this->dataRenderer)) {
             $this->dataRenderer = Yii::createObject([
-                'class' => GridViewRenderer::className(),
+                'class' => GridViewRenderer::class,
             ]);
         }
 
         /* Init Formatter if there is nothing set. */
-        if ($this->formatter === null)
-        {
+        if ($this->formatter === null) {
             $this->formatter = Yii::$app->getFormatter();
 
         } elseif (is_array($this->formatter)) {
@@ -274,24 +265,19 @@ class Grid extends BaseObject
      */
     public function getLayoutSections($refresh = false)
     {
-        if ($this->_layout === null || $refresh)
-        {
+        if ($this->_layout === null || $refresh) {
             $this->_layout = [];
 
-            if (($params = $this->params) === null)
-            {
+            if (($params = $this->params) === null) {
                 $request = Yii::$app->getRequest();
                 $params = $request instanceof Request ? $request->getQueryParams() : [];
             }
 
-            if (isset($params[$this->layoutParam]))
-            {
+            if (isset($params[$this->layoutParam])) {
                 $attributes = $this->parseLayoutParam($params[$this->layoutParam]);
 
-                foreach ($attributes as $attribute)
-                {
-                    if (in_array($attribute, $this->allowedLayout))
-                    {
+                foreach ($attributes as $attribute) {
+                    if (in_array($attribute, $this->allowedLayout)) {
                         $this->_layout[] = $attribute;
                     }
                 }
@@ -329,32 +315,28 @@ class Grid extends BaseObject
      */
     protected function initColumns()
     {
-        if (empty($this->columns))
-        {
+        if (empty($this->columns)) {
             $this->guessColumns();
         }
 
-        foreach ($this->columns as $i => $column)
-        {
+        foreach ($this->columns as $i => $column) {
             if (is_string($column)) {
                 $column = $this->createDataColumn($column);
 
             } else {
 
                 $column = Yii::createObject(array_merge([
-                    'class' => DataColumn::className(),
+                    'class' => DataColumn::class,
                     'grid'  => $this,
                 ], $column));
 
             }
 
-            if (($column instanceof DataColumn) === false)
-            {
-                throw new InvalidConfigException('The column must be class type of ' . DataColumn::className());
+            if (($column instanceof DataColumn) === false) {
+                throw new InvalidConfigException('The column must be class type of ' . DataColumn::class);
             }
 
-            if (!$column->visible)
-            {
+            if (!$column->visible) {
                 unset($this->columns[$i]);
                 continue;
             }
@@ -372,13 +354,12 @@ class Grid extends BaseObject
      */
     protected function createDataColumn($text)
     {
-        if (!preg_match('/^([^:]+)(:(\w*))?(:(.*))?$/', $text, $matches))
-        {
+        if (!preg_match('/^([^:]+)(:(\w*))?(:(.*))?$/', $text, $matches)) {
             throw new InvalidConfigException('The column must be specified in the format of "attribute", "attribute:format" or "attribute:format:label"');
         }
 
         return Yii::createObject([
-            'class' => DataColumn::className(),
+            'class' => DataColumn::class,
             'grid' => $this,
             'attribute' => $matches[1],
             'format' => isset($matches[3]) ? $matches[3] : 'raw',
@@ -396,12 +377,9 @@ class Grid extends BaseObject
         $models = $this->dataProvider->getModels();
         $model = reset($models);
 
-        if (is_array($model) || is_object($model))
-        {
-            foreach ($model as $name => $value)
-            {
-                if ($value === null || is_scalar($value) || is_callable([$value, '__toString']))
-                {
+        if (is_array($model) || is_object($model)) {
+            foreach ($model as $name => $value) {
+                if ($value === null || is_scalar($value) || is_callable([$value, '__toString'])) {
                     $this->columns[] = (string) $name;
                 }
             }

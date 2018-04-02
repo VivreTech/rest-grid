@@ -109,6 +109,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param string $method method name.
      * @param array $args method arguments
      * @return mixed method result
+     * @throws \ReflectionException
      */
     protected function invoke($object, $method, array $args = [])
     {

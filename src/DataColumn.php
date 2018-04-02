@@ -1,8 +1,6 @@
 <?php
 
-
 namespace vivretech\rest\grid;
-
 
 use yii\base\BaseObject;
 use yii\base\Model;
@@ -11,7 +9,6 @@ use yii\data\ArrayDataProvider;
 use yii\db\ActiveQueryInterface;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
-
 
 class DataColumn extends BaseObject
 {
@@ -41,6 +38,11 @@ class DataColumn extends BaseObject
      * @var string description to be displayed in the [[header|header cell]].
      */
     public $description;
+
+    /**
+     * @var array
+     */
+    public $options = [];
 
     /**
      * @var string|array|Closure an anonymous function or a string that is used to determine the value to display in the current column.
@@ -81,11 +83,6 @@ class DataColumn extends BaseObject
     public $visible = true;
 
     /**
-     * @var array the attributes for the row group tag.
-     */
-    public $rowOptions = [];
-
-    /**
      * @var array the attributes for the header cell tag.
      */
     public $headerOptions = [];
@@ -121,7 +118,6 @@ class DataColumn extends BaseObject
     public function renderLabel()
     {
         $label = $this->getHeaderCellLabel();
-
         return $label;
     }
 
@@ -170,10 +166,8 @@ class DataColumn extends BaseObject
     {
         $selectedValue = null;
 
-        if (empty($this->grid->filterModel) === false)
-        {
-            if (in_array($this->attribute, $this->grid->filterModel->attributes()))
-            {
+        if (empty($this->grid->filterModel) === false) {
+            if (in_array($this->attribute, $this->grid->filterModel->attributes())) {
                 $selectedValue = $this->grid->filterModel->{$this->attribute};
             }
         }
@@ -209,8 +203,7 @@ class DataColumn extends BaseObject
         $provider = $this->grid->dataProvider;
         $label = $this->label;
 
-        if ($this->label === null)
-        {
+        if ($this->label === null) {
 
             if ($provider instanceof ActiveDataProvider && $provider->query instanceof ActiveQueryInterface) {
                 /* @var $modelClass Model */
@@ -271,10 +264,8 @@ class DataColumn extends BaseObject
      */
     public function getDataCellValue($model, $key, $index)
     {
-        if ($this->value !== null)
-        {
-            if (is_string($this->value))
-            {
+        if ($this->value !== null) {
+            if (is_string($this->value)) {
                 return ArrayHelper::getValue($model, $this->value);
             }
 

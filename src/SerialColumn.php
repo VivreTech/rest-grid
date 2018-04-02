@@ -1,8 +1,6 @@
 <?php
 
-
 namespace vivretech\rest\grid;
-
 
 /**
  * SerialColumn displays a column of row numbers (1-based).
@@ -48,6 +46,7 @@ class SerialColumn extends DataColumn
 
     public $filter = null;
 
+
     /**
      * @inheritdoc
      */
@@ -55,8 +54,7 @@ class SerialColumn extends DataColumn
     {
         $pagination = $this->grid->dataProvider->getPagination();
 
-        if ($pagination !== false)
-        {
+        if ($pagination !== false) {
             return $pagination->getOffset() + $index + 1;
         }
 

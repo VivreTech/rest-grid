@@ -34,8 +34,7 @@ Usage
 Example:
 ```php
 $arrayRows = [];
-foreach(range(1, 100) as $item)
-{
+foreach(range(1, 100) as $item) {
     $arrayRows[] = [
         'id' => $item,
         'name' => 'Product ' . $item,
@@ -76,6 +75,7 @@ return $grid->run();
 
 Response
 ------------
+
 ```json
 {
     "metadata": {
@@ -106,11 +106,11 @@ Response
     },
     "pager": {
         "results": {
-            "total": 100,
+            "total": 1212,
             "per_page": 5
         },
         "pages": {
-            "total": 20,
+            "total": 243,
             "current": 1
         }
     },
@@ -119,6 +119,7 @@ Response
             "label": "Id",
             "attribute": "id",
             "description": null,
+            "options": [],
             "sortable": true,
             "filterable": false,
             "header": {
@@ -128,9 +129,6 @@ Response
             "filter": {
                 "selected": null,
                 "items": [],
-                "options": []
-            },
-            "row": {
                 "options": []
             },
             "footer": {
@@ -142,6 +140,7 @@ Response
             "label": "Name",
             "attribute": "name",
             "description": null,
+            "options": [],
             "sortable": true,
             "filterable": false,
             "header": {
@@ -151,9 +150,6 @@ Response
             "filter": {
                 "selected": null,
                 "items": [],
-                "options": []
-            },
-            "row": {
                 "options": []
             },
             "footer": {
@@ -165,6 +161,7 @@ Response
             "label": "Price",
             "attribute": "price",
             "description": null,
+            "options": [],
             "sortable": true,
             "filterable": false,
             "header": {
@@ -174,9 +171,6 @@ Response
             "filter": {
                 "selected": null,
                 "items": [],
-                "options": []
-            },
-            "row": {
                 "options": []
             },
             "footer": {
@@ -188,6 +182,7 @@ Response
             "label": "Created At",
             "attribute": "created_at",
             "description": null,
+            "options": [],
             "sortable": true,
             "filterable": false,
             "header": {
@@ -197,9 +192,6 @@ Response
             "filter": {
                 "selected": null,
                 "items": [],
-                "options": []
-            },
-            "row": {
                 "options": []
             },
             "footer": {
@@ -213,31 +205,31 @@ Response
             "id": 1,
             "name": "Product 1",
             "price": 101,
-            "created_at": "2017-12-14 11:13:57"
+            "created_at": "2018-04-02 17:54:52"
         },
         {
             "id": 2,
             "name": "Product 2",
             "price": 102,
-            "created_at": "2017-12-14 11:13:57"
+            "created_at": "2018-04-02 17:54:52"
         },
         {
             "id": 3,
             "name": "Product 3",
             "price": 103,
-            "created_at": "2017-12-14 11:13:57"
+            "created_at": "2018-04-02 17:54:52"
         },
         {
             "id": 4,
             "name": "Product 4",
             "price": 104,
-            "created_at": "2017-12-14 11:13:57"
+            "created_at": "2018-04-02 17:54:52"
         },
         {
             "id": 5,
             "name": "Product 5",
             "price": 105,
-            "created_at": "2017-12-14 11:13:57"
+            "created_at": "2018-04-02 17:54:52"
         }
     ]
 }

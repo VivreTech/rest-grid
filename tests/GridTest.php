@@ -36,8 +36,7 @@ final class GridTest extends TestCase
         $db->createCommand()->createTable($this->tableName, $this->tableColumns)->execute();
 
         $rows = [];
-        foreach (range(1, $this->rowsToGenerate) as $item)
-        {
+        foreach (range(1, $this->rowsToGenerate) as $item) {
             $rows[] = [
                 'Product ' . $item,
                 100 + $item,
@@ -119,8 +118,7 @@ final class GridTest extends TestCase
         $collectColumnsFromResult = [];
         $columnsFromDb = array_keys($this->tableColumns);
 
-        foreach($result['columns'] as $column)
-        {
+        foreach($result['columns'] as $column) {
             $collectColumnsFromResult[] = $column['attribute'];
         }
 
